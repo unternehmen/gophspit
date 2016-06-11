@@ -24,7 +24,7 @@ exec /usr/bin/env guile-2.0 -e main -s "$0" "$@"
 (define (translate-line line)
   (let ((match (regexp-exec line-regexp line)))
     (let ((type     (match:substring match 1))
-          (text     (match:substring match 2))
+          (text     `(pre ,(match:substring match 2)))
           (selector (match:substring match 3))
           (addr     (match:substring match 4))
           (port     (match:substring match 5)))
@@ -46,9 +46,9 @@ exec /usr/bin/env guile-2.0 -e main -s "$0" "$@"
                                  ((and (string=? addr "(HERE)")
                                        (string=? port "(HERE)"))
                                    (string-append "." selector))
-                                 (string-append
-                                   "http://"
-                                   addr ":" port selector))))
+                                 (else (string-append
+                                         "http://"
+                                         addr ":" port selector)))))
                     ,text)))
              (else
                `(,text)))))))
