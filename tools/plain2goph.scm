@@ -11,23 +11,17 @@ trailing whitespace on the right side all lines.
 (use-modules (ice-9 rdelim)
              (ice-9 streams))
 
-(define (make-line-stream port)
-  (make-stream
-    (lambda (port)
-      (let ((line (read-line port)))
-        (if (eof-object? line)
-          #f
-          (cons line port))))
-    port))
+(define (convert-line line)
+  (let ((trimmed (string-trim-right line char-set:whitespace)))
+    (string-append "i" trimmed "	fake	(NULL)	0")))
+
+(define (display-line obj . args)
+  (begin
+    (apply display obj args)
+    (apply newline args)))
 
 (define (main . args)
   (stream-for-each
-    (lambda (line)
-      (begin
-        (display
-          (string-append
-            "i"
-            (string-trim-right line char-set:whitespace)
-            "	fake	(NULL)	0"))
-        (newline)))
-    (make-line-stream (current-input-port))))
+    display-line
+    (let ((line-stream (port->stream (current-input-port) read-line)))
+      (stream-map convert-line line-stream))))

@@ -5,16 +5,8 @@ exec /usr/bin/env guile-2.0 -e main -s "$0" "$@"
 
 (use-modules (ice-9 regex)
              (ice-9 rdelim)
+             (ice-9 streams)
              (sxml simple))
-
-(define (map-lines-of-port func port)
-  (letrec ((iter
-             (lambda (acc)
-               (let ((line (read-line port)))
-                 (if (eof-object? line)
-                   acc
-                   (iter (cons (func line) acc)))))))
-    (reverse (iter '()))))
 
 (define line-regexp
   (make-regexp
@@ -67,7 +59,10 @@ exec /usr/bin/env guile-2.0 -e main -s "$0" "$@"
                         (href "style.css")))
                (title ""))
              (body
-               ,@(map-lines-of-port translate-line port))))))))
+               ,@(stream->list
+                   (stream-map
+                     translate-line
+                     (port->stream port read-line))))))))))
 
 (define (main . args)
   (cond ((not (provided? 'regex))

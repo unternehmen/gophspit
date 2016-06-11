@@ -12,4 +12,11 @@ i          /| . '-- |	fake	(NULL)	0
 i     ____//   ""uu"___	fake	(NULL)	0
 i    //                \	fake	(NULL)	0
 i   ||                  \	fake	(NULL)	0
+0Test Text File	/1.txt	(HERE)	(HERE)
+iA novella that every web programmer knows by heart...	fake	(NULL)	0
+ITest Image File	/2.png	(HERE)	(HERE)
+iThe above file is beautiful portrait of a "test image".	fake	(NULL)	0
 1Cherrychan's Superdimensional Anime Shrine	/home.html	cherrychan.neocities.org	80
+iAn info section explaining the external link above.  All links are	fake	(NULL)	0
+iturned into HTTP links, so in its current version gophspit.scm does	fake	(NULL)	0
+inot actually interoperate at all with real Gopherspace.	fake	(NULL)	0

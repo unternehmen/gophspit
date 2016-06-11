@@ -14,6 +14,9 @@ Because this tool outputs to HTML, it is desirable to be able to specify relativ
 * Address = (ROOT), Port = (ROOT):  This makes the generated page interpret the selector field as an absolute path from the root of your domain (i.e., no extra domain info is added to the selector).
 * Address = (HERE), Port = (HERE):  This makes the generated page interpret the selector field as a relative path (i.e., a "." is prepended and no extra domain info is added).
 
+## Deficiencies
+gophspit handles links dumbly!  All addresses and ports are turned into an HTTP address, which means (for one) that you can't link to real Gopherspace or any other protocol than HTTP and (for two) that actual John Goerzen-style URL links do not work!  In other words, if you want to have an interoperating website, you will need to modify gophspit.
+
 ## Tools
 The plain2goph.scm script in the tools/ directory takes text from standard input and outputs an "info-line" version of it, with trailing whitespace removed.  This is useful if you have, for example, a paragraph or ascii art image that you want to include on the page.
 
