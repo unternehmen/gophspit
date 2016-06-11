@@ -6,13 +6,18 @@ You need to have GNU Guile 2.0 with regular expression support installed.  I hav
 
 ## Usage
 
-    cat my-gopher-site.goph | ./gophspit.scm > my-gopher-site.html
+    $ cat my-gopher-site.goph | ./gophspit.scm > my-gopher-site.html
 
 ## Special Features
 Because this tool outputs to HTML, it is desirable to be able to specify relative paths.  If, for example, you don't have a domain name or don't care which domain name someone uses to connect to your site, then you can use the following address and port fields:
 
 * Address = (ROOT), Port = (ROOT):  This makes the generated page interpret the selector field as an absolute path from the root of your domain (i.e., no extra domain info is added to the selector).
 * Address = (HERE), Port = (HERE):  This makes the generated page interpret the selector field as a relative path (i.e., a "." is prepended and no extra domain info is added).
+
+## Tools
+The plain2goph.scm script in the tools/ directory takes text from standard input and outputs an "info-line" version of it, with trailing whitespace removed.  This is useful if you have, for example, a paragraph or ascii art image that you want to include on the page.
+
+    $ cat logo.txt | ./tools/plain2goph.scm > logo.goph
 
 ## License
 gophspit is licensed under the CC0 1.0 Universal license, a copy of which should have come with this package.
