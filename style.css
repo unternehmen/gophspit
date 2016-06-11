@@ -1,0 +1,10 @@
+body { font-family: monospace }
+.line {
+  padding-left: 20px;
+  background: url('unknown.png') left no-repeat;
+  min-height: 20px;
+}
+.type-cap-I { background: url('image.png') left no-repeat }
+.type-0 { background: url('text.png') left no-repeat }
+.type-1 { background: url('dir.png') left no-repeat }
+.type-i { background: inherit }
