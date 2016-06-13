@@ -1,5 +1,5 @@
 # gophspit
-A tool for translating from a subset of the Gopher protocol to HTML.
+A tool for translating Gopher directories into HTML pages.
 
 ## Dependencies
 You need to have GNU Guile 2.0 with regular expression support installed.  I have not tested this script with Guile 1.8.
@@ -8,14 +8,10 @@ You need to have GNU Guile 2.0 with regular expression support installed.  I hav
 
     $ cat my-gopher-site.goph | ./gophspit.scm > my-gopher-site.html
 
-## Special Features
-Because this tool outputs to HTML, it is desirable to be able to specify relative paths.  If, for example, you don't have a domain name or don't care which domain name someone uses to connect to your site, then you can use the following address and port fields:
+## URL links
+By default, actual Gopher protocol links are generated using the hostname and port fields of lines.  If you want to generate other links, such as HTTP links, use URL: syntax in the selector field.  In that case, the hostname and port fields are ignored.  Example:
 
-* Address = (ROOT), Port = (ROOT):  This makes the generated page interpret the selector field as an absolute path from the root of your domain (i.e., no extra domain info is added to the selector).
-* Address = (HERE), Port = (HERE):  This makes the generated page interpret the selector field as a relative path (i.e., a "." is prepended and no extra domain info is added).
-
-## Deficiencies
-gophspit handles links dumbly!  All addresses and ports are turned into an HTTP address, which means (for one) that you can't link to real Gopherspace or any other protocol than HTTP and (for two) that actual John Goerzen-style URL links do not work!  In other words, if you want to have an interoperating website, you will need to modify gophspit.
+    hSome Coding Website	URL:github.com	(NULL)	0
 
 ## Tools
 The plain2goph.scm script in the tools/ directory takes text from standard input and outputs an "info-line" version of it, with trailing whitespace removed.  This is useful if you have, for example, a paragraph or ascii art image that you want to include on the page.
@@ -23,5 +19,4 @@ The plain2goph.scm script in the tools/ directory takes text from standard input
     $ cat logo.txt | ./tools/plain2goph.scm > logo.goph
 
 ## License
-gophspit is licensed under the CC0 1.0 Universal license, a copy of which should have come with this package.
-To the extent possible under law, I waive all copyright and related or neighboring rights to gophspit. I make no warranty about the work and disclaim liability for all uses of the work, to the extent possible under law.
+gophspit is licensed under the CC0 1.0 Universal license, a copy of which should have come with this package.  To the extent possible under law, I waive all copyright and related or neighboring rights to gophspit. I make no warranty about the work and disclaim liability for all uses of the work, to the extent possible under law.
