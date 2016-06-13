@@ -55,6 +55,7 @@ exec /usr/bin/env guile-2.0 -e main -s "$0" "$@"
     ("0" "[TXT] " "text"      #t)
     ("1" "[DIR] " "directory" #t)
     ("h" "[HTM] " "html"      #t)
+    ("s" "[AUD] " "audio"     #t)
     (""  "[???] " "unknown"   #f)))
 
 (define (render-line-data type text selector hostname port)
